@@ -1,0 +1,10 @@
+Package: coffee-shop
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: libgtk-3-0, libsqlite3-0, libc6
+Maintainer: Sanjay S B <sbsa597@gmail.com>
+Description: Simple coffee shop application.
+ This application allows users to manage orders in a coffee shop.
+ It provides a graphical interface for selecting beverages and tracking orders.

@@ -1,0 +1,7 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: your-package-name
+Source: http://example.com/your-package-source
+
+Files: \*
+Copyright: 2023 Your Name <your.email@example.com>
+License: GPL-3+
