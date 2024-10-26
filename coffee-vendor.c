@@ -1,10 +1,12 @@
 /*
  * Use this for deb creation, because the paths used for the database are system folders.
  * gcc -o deb/coffee_shop/usr/bin/coffee_shop coffee_shop.c `pkg-config --cflags --libs gtk+-3.0` -lsqlite3
+ * [or]
+ * use Makefile to build : `make all` and `make clean`
+ *
  * strip deb/coffee_shop/usr/bin/coffee_shop
- * dpkg-deb --build coffee_shop
- * sudo dpkg -i coffee_shop.deb
- * This files creates a sql db file in ~/.local/share/coffee_shop/. make sur to delete it manually
+ * dpkg-deb --build build
+ * sudo dpkg -i build.deb
  */
 
 #include <gtk/gtk.h>
