@@ -2,3 +2,4 @@ executable
 *.o
 *.c
 !coffee-vendor.c
+.vscode

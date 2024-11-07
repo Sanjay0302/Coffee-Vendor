@@ -94,6 +94,41 @@ const char *get_user_data_directory()
     return data_dir;
 }
 
+// Explaining the sqlite3_exec function
+/*
+
+int sqlite3_exec(
+    sqlite3 *db,           // An open database connection
+    const char *sql,       // SQL to be evaluated
+    int (*callback)(void*, int, char**, char**), // Callback function
+    void *arg,             // 1st argument to callback
+    char **errmsg          // Error message written here
+);
+
+* The sqlite3_exec() function is a convenience wrapper around sqlite3_prepare_v2(),
+* sqlite3_step(), and sqlite3_finalize(), that allows an application to run multiple
+* statements of SQL without having to use a lot of C code.
+*
+* The sqlite3_exec() function runs zero or more UTF-8 encoded, semicolon-separated
+* SQL statements passed into its 2nd argument (const char *sql), in the context of
+* the database connection passed in as its 1st argument.
+*
+* The 3rd argument is an application-defined callback function; this is a pointer to
+* a callback function that is called for each row in the result set. If you don't
+* need to process the result set, you can pass NULL.
+*
+* The 4th argument to sqlite3_exec() is the 1st argument to the callback function.
+*
+* The 5th argument is a pointer to an error message written by the sqlite3_exec()
+* function itself if an error occurs. If an error occurs, an error message is written
+* to the location pointed to by this argument.
+*
+* The sqlite3_exec() function returns SQLITE_OK if the execution is successful, or
+* an error code if an error occurs. If the callback function returns zero, it indicates
+* that the execution should be halted, and an error code will be returned. If the 5th
+* argument is not NULL, then sqlite3_exec() writes an error message to it.
+*/
+
 // Database setup
 void setup_database(AppData *app)
 {
