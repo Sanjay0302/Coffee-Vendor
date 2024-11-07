@@ -21,11 +21,19 @@
 #include <pwd.h>    // For getpwuid
 
 // Structures
+/*
+ * Stores the name and the proce of the beverage
+ */
 typedef struct
 {
     char name[50];
     double price;
 } Beverage;
+
+/*
+ * Order will have the selected beverage (Name and price),
+ * and the start and end time
+ */
 
 typedef struct
 {
@@ -35,6 +43,14 @@ typedef struct
     time_t end_time;
 } Order;
 
+/*
+ * UI elements and their pointer variable (Shallow copy)
+ * start button and pause button inherited and tracked in all the threads
+ * Queue size and capacity
+ * monitor is_processing and is_paused
+ * inherit the database
+ *
+ */
 typedef struct
 {
     GtkWidget *window;
@@ -43,23 +59,31 @@ typedef struct
     GtkWidget *start_button;
     GtkWidget *pause_button;
     GtkWidget *quantity_entry;
-    Order *queue;
-    int queue_size;
-    int queue_capacity;
-    gboolean is_processing;
-    gboolean is_paused;
-    sqlite3 *db;
     GtkWidget *quantity_combo;
     GtkWidget *history_window;
     GtkWidget *history_text_view;
+    gboolean is_processing;
+    gboolean is_paused;
+    Order *queue;
+    int queue_size;
+    int queue_capacity;
+    sqlite3 *db;
+
 } AppData;
 
 // Function prototypes
+
 void setup_database(AppData *app);
+
+// UI
 void create_ui(AppData *app);
+
+// add update and process the order
 void add_to_queue(AppData *app, Beverage *beverage, int quantity);
 void update_queue_display(AppData *app);
 void *process_queue(void *arg);
+
+// buttons prototype
 void on_beverage_clicked(GtkWidget *widget, gpointer data);
 void on_start_clicked(GtkWidget *widget, gpointer data);
 void on_pause_clicked(GtkWidget *widget, gpointer data);
